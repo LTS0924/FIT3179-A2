@@ -1,0 +1,169 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dual-axis visualization showing GDP & GVA growth rates alongside International Arrivals",
+  "title": {
+    "text": "Tourism Growth Indicators: GDP, GVA Growth Rates & International Arrivals (2016-2019)",
+    "anchor": "middle",
+    "fontSize": 14,
+    "offset": 20
+  },
+  "width": 600,
+  "height": 400,
+  "padding": {"top": 20, "bottom": 50, "left": 50, "right": 50},
+  "data": {
+    "url": "https://raw.githubusercontent.com/LTS0924/FIT3179-A2/refs/heads/main/Arrival_GDP.csv"
+  },
+  "transform": [
+    {
+      "fold": ["2016", "2017", "2018", "2019"],
+      "as": ["Year", "Value"]
+    },
+    {
+      "calculate": "toNumber(datum.Value)",
+      "as": "NumericValue"
+    }
+  ],
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.Indicator == 'International Arrivals'"
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "opacity": 0.5,
+        "width": 50,
+        "clip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "title": "Year",
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "NumericValue",
+          "type": "quantitative",
+          "title": "International Arrivals",
+          "axis": {
+            "orient": "right",
+            "titleColor": "#999999",
+            "labelColor": "#999999"
+          },
+          "scale": {
+            "domain": [180000000, 210000000]
+          }
+        },
+        "color": {
+          "value": "#999999"
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "NumericValue", "type": "quantitative", "title": "International Arrivals", "format": ","}
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Indicator == 'Gross Domestic Product (GDP)' || datum.Indicator == 'Gross Value Added of Tourism Industries (GVA)'"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "line",
+            "strokeWidth": 3,
+            "interpolate": "monotone"
+          },
+          "encoding": {
+            "x": {
+              "field": "Year",
+              "type": "ordinal"
+            },
+            "y": {
+              "field": "NumericValue",
+              "type": "quantitative",
+              "title": "Growth Rate (%)",
+              "axis": {
+                "orient": "left"
+              },
+              "scale": {
+                "domain": [4, 12]
+              }
+            },
+            "color": {
+              "field": "Indicator",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Gross Domestic Product (GDP)",
+                  "Gross Value Added of Tourism Industries (GVA)"
+                ],
+                "range": ["#0072B2", "#E69F00"]
+              },
+              "legend": {
+                "title": "Growth Indicators",
+                "orient": "left",
+                "offset": 10
+              }
+            },
+            "tooltip": [
+              {"field": "Indicator", "type": "nominal", "title": "Indicator"},
+              {"field": "Year", "type": "ordinal", "title": "Year"},
+              {"field": "NumericValue", "type": "quantitative", "title": "Growth Rate (%)", "format": ".1f"}
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "point",
+            "filled": true,
+            "size": 100
+          },
+          "encoding": {
+            "x": {
+              "field": "Year",
+              "type": "ordinal"
+            },
+            "y": {
+              "field": "NumericValue",
+              "type": "quantitative"
+            },
+            "color": {
+              "field": "Indicator",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Gross Domestic Product (GDP)",
+                  "Gross Value Added of Tourism Industries (GVA)"
+                ],
+                "range": ["#0072B2", "#E69F00"]
+              },
+              "legend": null
+            },
+            "tooltip": [
+              {"field": "Indicator", "type": "nominal", "title": "Indicator"},
+              {"field": "Year", "type": "ordinal", "title": "Year"},
+              {"field": "NumericValue", "type": "quantitative", "title": "Growth Rate (%)", "format": ".1f"}
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}
