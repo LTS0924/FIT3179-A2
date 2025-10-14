@@ -129,9 +129,9 @@ header .lead{
 
 /* Specific styling for lollipop chart visualization */
 .card-vis-lollipop{
-  flex: 0 0 60%;
+  flex: 0 0 55%;
   min-width: 0;
-  max-width: 950px;
+  max-width: 800px;
   overflow: hidden;
 }
 
