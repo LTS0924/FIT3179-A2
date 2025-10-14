@@ -124,12 +124,12 @@ header .lead{
 
 /* Ensure inline visualizations fit their containers */
 .card-vis-inline .vis-container{
-  max-height: 900px;
+  max-height: 1000px;
 }
 
 /* Specific styling for lollipop chart visualization */
 .card-vis-lollipop{
-  flex: 0 0 65%;
+  flex: 0 0 60%;
   min-width: 0;
   max-width: 950px;
   overflow: hidden;
@@ -137,7 +137,7 @@ header .lead{
 
 .card-vis-lollipop .vis-container{
   max-height: 1100px;
-  min-height: 1000px;
+  min-height: 900px;
 }
 
 /* Ensure vega embed wrappers and generated svg don't center themselves */
