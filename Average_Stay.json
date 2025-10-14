@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Lollipop chart showing average length of stay by country in 2017, with Malaysia highlighted",
+  "description": "Lollipop chart showing average length of stay by country in 2017",
   "width": 600,
   "height": 800,
   "data": {
@@ -8,18 +8,11 @@
   },
   "transform": [
     {
-      "fold": ["2015", "2016", "2017"],
-      "as": ["Year", "Average_Stay"]
+      "calculate": "toNumber(datum['2017'])",
+      "as": "Stay_2017"
     },
     {
-      "filter": "datum.Year == '2017'"
-    },
-    {
-      "calculate": "toNumber(datum.Average_Stay)",
-      "as": "Stay_Numeric"
-    },
-    {
-      "calculate": "datum.Year == 'Malaysia' ? 'Malaysia' : 'Other'",
+      "calculate": "datum.Year == 'Others ASEAN' ? 'Others ASEAN' : 'Other'",
       "as": "Country_Type"
     }
   ],
@@ -32,7 +25,7 @@
       },
       "encoding": {
         "x": {
-          "field": "Stay_Numeric",
+          "field": "Stay_2017",
           "type": "quantitative",
           "scale": {"domain": [0, 12]},
           "title": "Average Length of Stay (nights)"
@@ -41,7 +34,7 @@
           "field": "Year",
           "type": "nominal",
           "sort": {
-            "field": "Stay_Numeric",
+            "field": "Stay_2017",
             "order": "descending"
           },
           "title": "Country of Nationality"
@@ -51,7 +44,7 @@
           "field": "Country_Type",
           "type": "nominal",
           "scale": {
-            "domain": ["Malaysia", "Other"],
+            "domain": ["Others ASEAN", "Other"],
             "range": ["#0072B2", "#999999"]
           },
           "legend": null
@@ -66,14 +59,14 @@
       },
       "encoding": {
         "x": {
-          "field": "Stay_Numeric",
+          "field": "Stay_2017",
           "type": "quantitative"
         },
         "y": {
           "field": "Year",
           "type": "nominal",
           "sort": {
-            "field": "Stay_Numeric",
+            "field": "Stay_2017",
             "order": "descending"
           }
         },
@@ -81,7 +74,7 @@
           "field": "Country_Type",
           "type": "nominal",
           "scale": {
-            "domain": ["Malaysia", "Other"],
+            "domain": ["Others ASEAN", "Other"],
             "range": ["#0072B2", "#999999"]
           },
           "legend": {
@@ -91,7 +84,7 @@
         },
         "tooltip": [
           {"field": "Year", "type": "nominal", "title": "Country"},
-          {"field": "Stay_Numeric", "type": "quantitative", "title": "Average Stay (nights)", "format": ".1f"}
+          {"field": "Stay_2017", "type": "quantitative", "title": "Average Stay (nights)", "format": ".1f"}
         ]
       }
     }
