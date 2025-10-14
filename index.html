@@ -82,6 +82,18 @@
 				</section>
 			</div>
 
+      <!-- Average Stay (vis5) - Side by side -->
+			<div class="row">
+				<section class="card card-vis-inline" style="width:100%;">
+					<h2 class="vis-title">Average Length of Stay by Country (2015-2017)</h2>
+					<div id="vis5" class="vis-container"></div>
+				</section>
+				<section class="card card-desc-inline">
+					<h3>Description</h3>
+					<p>Visitors from different countries show varying length of stays in Malaysia. European and Middle Eastern countries tend to have longer stays, while neighboring ASEAN countries show shorter average stays.</p>
+				</section>
+			</div>
+
     </main>		<footer class="credits">
 			<p>Data files are loaded from the local repository files (CSV/JSON). To avoid cross-origin issues, serve this folder with a local HTTP server when testing (for example: <code>python3 -m http.server</code>).</p>
 		</footer>
@@ -93,11 +105,13 @@
 		var specVis2 = "./Arrival_GDP.json";
 		var specVis3 = "./Arrival_state.vg.json";
 		var specVis4 = "./Tourism_Expenditure.json";
+		var specVis5 = "./Average_Stay.json";
 
 		vegaEmbed('#vis1', specVis1, { "actions": false });
 		vegaEmbed('#vis2', specVis2, { "actions": false });
 		vegaEmbed('#vis3', specVis3, { "actions": false });
 		vegaEmbed('#vis4', specVis4, { "actions": false });
+		vegaEmbed('#vis5', specVis5, { "actions": false });
 	</script>
 
 	</body>
