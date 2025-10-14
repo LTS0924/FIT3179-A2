@@ -1,0 +1,169 @@
+.vis-title {
+  text-align: center;
+  font-size: 2.1em;
+  font-weight: 800;
+  margin: 24px 0 32px 0;
+}
+/* Shared styles for the combined Tourism Dashboard */
+:root{
+  --max-width: 1600px;
+  --page-padding: 28px;
+  --card-bg: #ffffff;
+  --muted: #666;
+  --accent: #0072B2;
+}
+
+*{ box-sizing: border-box; }
+html,body{ height:100%; }
+body{
+  font-family: 'Open Sans', Arial, sans-serif;
+  background: #f0f2f5;
+  margin: 0;
+  color: #222;
+}
+
+.page{
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0;
+  padding: var(--page-padding);
+}
+
+.site-header h1{ margin: 0 0 6px 0; font-weight: 800; }
+.site-header .lead{ margin: 0 0 18px 0; color: var(--muted); }
+
+/*
+  Source of the page title:
+  - The visible header text "Multiple Visualisations" comes from `index.html` in the top-level
+    <header> element:  <header><h1>Multiple Visualisations</h1> ...</header>
+  - The browser tab title is set by the <title> element in `index.html` (<title>Multiple Visualisations | An Example</title>).
+  This comment documents that the text is provided by the HTML, not the CSS.
+  Centering styles below apply to that header.
+*/
+/* Center the page header shown in index.html (h1 + lead paragraph) */
+header{
+  text-align: center;
+}
+header h1{
+  margin: 0 0 6px 0;
+  font-weight: 800;
+}
+header .lead{
+  margin: 0 auto 18px auto;
+  color: var(--muted);
+  max-width: 900px; /* keep the lead paragraph from becoming too wide */
+}
+
+.grid{
+  display: grid;
+  /* Force single column so visualisations are stacked vertically */
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+.card{
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 3px rgba(10,10,20,0.06);
+  margin-bottom: 20px;
+}
+
+.card h2{ margin: 0 0 10px 0; font-size: 1.05rem; }
+.card h3{ margin: 0 0 8px 0; font-size: 1rem; font-weight: 600; }
+
+/* ===== CHOROPLETH MAP (Arrivals by State) - Hero visualization at top ===== */
+.card-hero{
+  width: 95%;
+  margin-bottom: 16px;
+}
+
+.vis-hero{
+  min-height: 500px !important;
+  max-height: 900px;
+}
+
+/* Description card below the choropleth map */
+.card-desc{
+  width: 90%;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 48px;
+}
+
+/* ===== SIDE-BY-SIDE VISUALIZATIONS (Employment, Tourism Expenditure, GDP/GVA) ===== */
+.row{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 32px;
+  align-items: center;
+}
+
+/* Visualization cards for: Employment, Tourism Expenditure, GDP/GVA */
+.card-vis-inline{
+  flex: 0 0 70%;
+  min-width: 0;
+  max-width: 950px;
+  overflow: hidden;
+}
+
+/* Description cards (right side) for: Employment, Tourism Expenditure, GDP/GVA */
+.card-desc-inline{
+  flex: 0 0 350px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.vis-container{
+  width: 100%;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+/* Ensure inline visualizations fit their containers */
+.card-vis-inline .vis-container{
+  max-height: 450px;
+}
+
+/* Ensure vega embed wrappers and generated svg don't center themselves */
+.vis-container .vega-embed{
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+.vis-container .vega-embed > div,
+.vis-container svg{
+  max-width: none !important;
+  margin: 0 !important;
+  display: block;
+}
+
+.credits{ margin-top: 18px; color: var(--muted); font-size: 0.92rem; }
+.error{ color: crimson; white-space: pre-wrap; }
+
+/* Make the layout single column on small screens */
+/* Already single-column by default; keep responsive sizing */
+@media (max-width: 900px){
+  /* Stack side-by-side rows vertically on mobile */
+  .row{ flex-direction: column; }
+  .card-vis-inline, .card-desc-inline{ 
+    flex: 1 1 100%; 
+    min-width: 100%;
+  }
+  .vis-container{ min-height: 300px; }
+  .vis-hero{ min-height: 400px !important; }
+}
+
+/* Tweak for very narrow screens */
+@media (max-width: 420px){
+  .page{ padding: 12px; }
+  .vis{ min-height: 240px; }
+}
+
+/* Prevent horizontal scrolling */
+/* Prevent horizontal scrolling */
+html, body { overflow-x: hidden; }

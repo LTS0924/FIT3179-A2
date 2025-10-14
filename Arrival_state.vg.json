@@ -1,8 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Tourist Arrivals by State in Malaysia",
-  "width": 950,
-  "height": 350,
+  "width": 1100,
+  "height": 450,
   "projection": {
     "type": "mercator",
     "center": [109.45, 4],

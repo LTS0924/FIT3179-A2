@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Multiple Visualisations | An Example</title>
+	<!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+	<script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+	<!-- Import pure.css -->
+	<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+		integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Google font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+	<!-- CSS file -->
+	<link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+
+</head>
+
+	<body>
+
+	<div class="page">
+
+		<header>
+      <h1 style="margin-bottom: 24px; font-size: 2.8em;">How Tourism Drives Economic Growth and Recovery in Malaysia</h1>
+      <p class="lead" style="margin-bottom: 40px; font-size: 1.15em; max-width: 900px; margin-left: auto; margin-right: auto;">Tourism is a key engine for Malaysia’s economy, shaping employment, spending, and growth across regions and sectors. From 2015 to 2024, the data reveals how tourist arrivals, industry jobs, and expenditure patterns have responded to global challenges and local strengths. Despite setbacks during the pandemic, Malaysia’s tourism sector has shown resilience, with strong rebounds in arrivals, employment, and spending. These visualisations highlight the dynamic links between tourism and economic development, offering insights into recovery and future opportunities.</p>
+		</header>
+
+    <main style="margin-top: 32px;">
+
+    <main>
+      <!-- FIRST: Choropleth Map (vis3) - Full width, vertical stack -->
+			<section class="card card-vis card-hero">
+				<h2 class="vis-title">Arrivals by State (selectable year)</h2>
+				<div id="vis3" class="vis-container vis-hero"></div>
+			</section>
+			<section class="card card-desc">
+				<h3>Description</h3>
+				<p>Tourist arrivals in Malaysia show clear regional leaders, with Selangor, Kuala Lumpur, and Johor consistently attracting the most visitors. The interactive map highlights these trends and shows strong recovery in 2024, reflecting Malaysia's enduring appeal across its states.</p>
+			</section>
+
+      <!-- Employment (vis1) - Side by side -->
+			<div class="row">
+				<section class="card card-vis-inline" style="width:100%;">
+					<h2 class="vis-title">Tourism Employment by Industry Sector (2015-2024)</h2>
+					<div id="vis1" class="vis-container"></div>
+				</section>
+				<section class="card card-desc-inline">
+					<h3>Description</h3>
+					<p>Tourism employment in Malaysia is driven by food, retail, and accommodation sectors. Despite a dip in 2020-2021, jobs rebounded, reaching new highs in 2024.</p>
+				</section>
+			</div>
+
+      <!-- Tourism Expenditure (vis4) - Side by side -->
+			<div class="row">
+				<section class="card card-vis-inline" style="width:100%;">
+					<h2 class="vis-title">Inbound Tourism Expenditure of Excursionist by Products</h2>
+					<div id="vis4" class="vis-container"></div>
+				</section>
+				<section class="card card-desc-inline">
+					<h3>Description</h3>
+					<p>Inbound tourism spending in Malaysia dropped sharply in 2020-2021, but has since recovered across all product categories, with accommodation and transport leading the rebound.</p>
+				</section>
+			</div>
+
+      <!-- GDP & Arrivals (vis2) - Side by side -->
+			<div class="row">
+				<section class="card card-vis-inline" style="width:100%;">
+					<h2 class="vis-title">GDP / GVA Growth & International Arrivals</h2>
+					<div id="vis2" class="vis-container"></div>
+				</section>
+				<section class="card card-desc-inline">
+					<h3>Description</h3>
+					<p>GDP and GVA growth rates peaked in 2017, alongside the highest international arrivals. The chart shows how tourism growth and visitor numbers move together over time.</p>
+				</section>
+			</div>
+
+    </main>		<footer class="credits">
+			<p>Data files are loaded from the local repository files (CSV/JSON). To avoid cross-origin issues, serve this folder with a local HTTP server when testing (for example: <code>python3 -m http.server</code>).</p>
+		</footer>
+
+	</div>
+
+	<script type="text/javascript">
+		var specVis1 = "./Employment_international.json";
+		var specVis2 = "./Arrival_GDP.json";
+		var specVis3 = "./Arrival_state.vg.json";
+		var specVis4 = "./Tourism_Expenditure.json";
+
+		vegaEmbed('#vis1', specVis1, { "actions": false });
+		vegaEmbed('#vis2', specVis2, { "actions": false });
+		vegaEmbed('#vis3', specVis3, { "actions": false });
+		vegaEmbed('#vis4', specVis4, { "actions": false });
+	</script>
+
+	</body>
+
+	</html>

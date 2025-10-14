@@ -1,12 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Inbound Tourism Expenditure of Excursionist by Products - toggle industries to view expenditure by year.",
-  "title": {
-    "text": "Inbound Tourism Expenditure of Excursionist by Products",
-    "anchor": "middle",
-    "fontSize": 14,
-    "offset": 28
-  },
   "autosize": { "type": "pad", "contains": "padding" },
   "padding": { "top": 40 },
   "data": {
