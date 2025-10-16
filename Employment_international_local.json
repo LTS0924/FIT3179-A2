@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 300,
+  "data": {
+    "url": "Employment_international_fixed.csv",
+    "format": { "type": "csv" }
+  },
+  "transform": [
+    {
+      "fold": ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+      "as": ["Year", "Employment"]
+    },
+    {
+      "calculate": "toNumber(datum.Year)",
+      "as": "YearNum"
+    },
+    {
+      "calculate": "toNumber(datum.Employment)",
+      "as": "EmploymentNum"
+    },
+    {
+      "filter": "datum.Industry != 'Total'"
+    }
+  ],
+  "mark": {
+    "type": "area",
+    "line": true,
+    "point": false
+  },
+  "encoding": {
+    "x": {
+      "field": "YearNum",
+      "type": "quantitative",
+      "title": "Year",
+      "axis": {
+        "format": "d",
+        "tickCount": 10,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "EmploymentNum",
+      "type": "quantitative",
+      "title": "Employment (thousands)",
+      "axis": {
+        "format": ",.0f",
+        "grid": true,
+        "gridOpacity": 0.3
+      },
+      "stack": "zero"
+    },
+    "color": {
+      "field": "Industry",
+      "type": "nominal",
+      "title": "Industry Sector",
+      "scale": {
+        "scheme": "category20"
+      },
+      "legend": {
+        "orient": "right",
+        "titleLimit": 200,
+        "labelLimit": 250
+      }
+    },
+    "tooltip": [
+      { "field": "Industry", "type": "nominal", "title": "Industry" },
+      { "field": "YearNum", "type": "quantitative", "title": "Year", "format": "d" },
+      { "field": "EmploymentNum", "type": "quantitative", "title": "Employment (thousands)", "format": ",.1f" }
+    ],
+    "opacity": {
+      "value": 0.8
+    }
+  },
+  "config": {
+    "area": {
+      "interpolate": "monotone"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}
