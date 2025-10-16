@@ -4,6 +4,12 @@
   font-weight: 800;
   margin: 24px 0 32px 0;
 }
+
+/* Use serif font for visualization titles to match main title styling */
+.vis-title, .card h2 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  letter-spacing: 0.2px;
+}
 /* Shared styles for the combined Tourism Dashboard */
 :root{
   --max-width: 1080px;
