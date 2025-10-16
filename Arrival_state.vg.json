@@ -1,7 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1100,
+  "background": "transparent",
+  "width": "container",
   "height": 450,
+  "autosize": { "type": "fit", "contains": "padding" },
   "projection": {
     "type": "mercator",
     "center": [109.45, 4],
@@ -31,7 +33,7 @@
   ],
 
   "layer": [
-    { "data": { "sphere": true }, "mark": { "type": "geoshape", "fill": "#f7fbfd" } },
+  { "data": { "sphere": true }, "mark": { "type": "geoshape", "fill": "transparent" } },
 
     {
       "data": { "graticule": { "step": [5, 5] } },
@@ -163,4 +165,8 @@
   ],
 
   "resolve": { "legend": { "color": "independent" } }
+  ,
+  "config": {
+    "view": { "stroke": null, "fill": "transparent" }
+  }
 }

@@ -6,8 +6,8 @@
 }
 /* Shared styles for the combined Tourism Dashboard */
 :root{
-  --max-width: 1600px;
-  --page-padding: 28px;
+  --max-width: 1080px;
+  --page-padding: 16px;
   --card-bg: #ffffff;
   --muted: #666;
   --accent: #0072B2;
@@ -25,7 +25,7 @@ body{
 .page{
   max-width: var(--max-width);
   width: 100%;
-  margin: 0;
+  margin: 0 auto; /* center the modest container */
   padding: var(--page-padding);
 }
 
@@ -41,17 +41,21 @@ body{
   Centering styles below apply to that header.
 */
 /* Center the page header shown in index.html (h1 + lead paragraph) */
+/* Left-align header so title and lead match page flow */
 header{
-  text-align: center;
+  text-align: left;
 }
 header h1{
   margin: 0 0 6px 0;
   font-weight: 800;
+  text-align: center; /* keep the main title centered */
+  font-family: Georgia, 'Times New Roman', Times, serif; /* serif for title */
 }
 header .lead{
-  margin: 0 auto 18px auto;
+  margin: 0 0 18px 0;
   color: var(--muted);
-  max-width: 900px; /* keep the lead paragraph from becoming too wide */
+  max-width: none; /* allow lead to span full width */
+  font-family: Georgia, 'Times New Roman', Times, serif; /* serif for detail */
 }
 
 .grid{
@@ -98,7 +102,7 @@ header .lead{
   flex-direction: row;
   gap: 20px;
   margin-bottom: 32px;
-  align-items: center;
+  align-items: flex-start; /* top-align children so descriptions start at same height as visuals */
 }
 
 /* Visualization cards for: Employment, Tourism Expenditure, GDP/GVA */
@@ -119,12 +123,35 @@ header .lead{
 .vis-container{
   width: 100%;
   min-height: 320px;
-  overflow: hidden;
+  /* allow embedded vega elements (legends, controls) to extend without being clipped */
+  overflow: visible;
 }
 
 /* Ensure inline visualizations fit their containers */
 .card-vis-inline .vis-container{
   max-height: 1000px;
+}
+
+/* Remove the white card 'container' for visualization and description sections so they don't block visuals */
+.card.card-vis-inline,
+.card.card-vis,
+.card.card-hero,
+.card.card-desc,
+.card.card-desc-inline,
+.card.card-vis-lollipop{
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+/* When the card wrapper is removed, keep headings spaced correctly */
+.card.card-vis-inline h2,
+.card.card-hero h2,
+.card.card-desc h3,
+.card.card-desc-inline h3{
+  margin: 8px 0 12px 0;
 }
 
 /* Specific styling for lollipop chart visualization */
@@ -146,6 +173,7 @@ header .lead{
   max-width: none !important;
   margin: 0 !important;
   text-align: left !important;
+  background: transparent !important; /* allow page background to show */
 }
 
 .vis-container .vega-embed > div,
@@ -153,6 +181,13 @@ header .lead{
   max-width: none !important;
   margin: 0 !important;
   display: block;
+  background: transparent !important; /* remove any white svg/div backgrounds */
+}
+
+/* make sure legends/controls inside vega don't get wrapped in white */
+.vis-container .vega-embed .vega-actions,
+.vis-container .vega-embed .vega-embed-visualization{
+  background: transparent !important;
 }
 
 .credits{ margin-top: 18px; color: var(--muted); font-size: 0.92rem; }

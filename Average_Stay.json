@@ -1,8 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "transparent",
   "description": "Lollipop chart showing average length of stay by country in 2017",
-  "width": 600,
+  "width": "container",
   "height": 800,
+  "autosize": { "type": "fit", "contains": "padding" },
   "data": {
     "url": "https://raw.githubusercontent.com/LTS0924/FIT3179-A2/refs/heads/main/Average_Stay.csv"
   },
@@ -89,4 +91,8 @@
       }
     }
   ]
+,
+  "config": {
+    "view": { "fill": "transparent" }
+  }
 }

@@ -1,13 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "transparent",
   "description": "Inbound Tourism Expenditure of Excursionist by Products - toggle industries to view expenditure by year.",
-  "autosize": { "type": "pad", "contains": "padding" },
   "padding": { "top": 40 },
   "data": {
     "url": "https://raw.githubusercontent.com/LTS0924/FIT3179-Week-10/refs/heads/main/Inbound%20Tourism%20Expenditure%20of%20Excursionist%20by%20Products.csv"
   },
-  "width": 600,
+  "width": "container",
   "height": 240,
+  "autosize": { "type": "fit", "contains": "padding" },
   "transform": [
     { "fold": ["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024"], "as": ["year","expenditure"] },
     { "calculate": "toNumber(datum.expenditure)", "as": "exp_num" },
@@ -84,4 +85,8 @@
       }
     }
   ]
+  ,
+  "config": {
+    "view": { "fill": "transparent" }
+  }
 }
