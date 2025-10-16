@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "background": "transparent",
-  "width": "container",
-  "height": 300,
+  "width": 600,
+  "height": 360,
   "autosize": { "type": "fit", "contains": "padding" },
   "data": {
     "url": "https://raw.githubusercontent.com/LTS0924/FIT3179-A2/refs/heads/main/Employment_international.csv",
@@ -81,7 +81,8 @@
       "legend": {
         "orient": "right",
         "titleLimit": 200,
-        "labelLimit": 250
+        "labelLimit": 250,
+        "offset": 80
       }
     },
     "tooltip": [
