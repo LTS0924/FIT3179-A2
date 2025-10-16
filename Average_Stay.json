@@ -81,7 +81,8 @@
           },
           "legend": {
             "title": "Country Type",
-            "orient": "top-right"
+            "orient": "right",
+            "offset": 120
           }
         },
         "tooltip": [

@@ -6,7 +6,7 @@
   "data": {
     "url": "https://raw.githubusercontent.com/LTS0924/FIT3179-Week-10/refs/heads/main/Inbound%20Tourism%20Expenditure%20of%20Excursionist%20by%20Products.csv"
   },
-  "width": 560,
+  "width": 520,
   "height": 320,
   "transform": [
     { "fold": ["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024"], "as": ["year","expenditure"] },

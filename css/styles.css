@@ -12,6 +12,28 @@
 }
 /* Shared styles for the combined Tourism Dashboard */
 :root{
+  /* Control the visible content width (change to crop empty side space). Default is 1080px. */
+  --content-width: 1080px; /* change this to e.g. 900px, 1200px to crop/expand the page */
+  --max-width: 1920px; /* fallback upper bound for wide mode */
+  --page-padding: 12px;
+  --card-bg: #ffffff;
+  --muted: #666;
+  --accent: #0072B2;
+}
+.vis-title {
+  text-align: center;
+  font-size: 2.1em;
+  font-weight: 800;
+  margin: 24px 0 32px 0;
+}
+
+/* Use serif font for visualization titles to match main title styling */
+.vis-title, .card h2 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  letter-spacing: 0.2px;
+}
+/* Shared styles for the combined Tourism Dashboard */
+:root{
   --max-width: 900px;
   --page-padding: 12px;
   --card-bg: #ffffff;
@@ -33,6 +55,19 @@ body{
   width: 100%;
   margin: 0 auto; /* center the modest container */
   padding: var(--page-padding);
+}
+.page{
+  /* Default visible content width: use --content-width to 'crop' empty space. */
+  max-width: var(--content-width);
+  width: 100%;
+  margin: 0 auto; /* center the modest container */
+  padding: var(--page-padding);
+}
+
+/* Utility: if you want the full wide layout temporarily, add .page--wide to the page element
+   or change --content-width at the :root level. The page will use --max-width as an upper bound. */
+.page.page--wide{
+  max-width: var(--max-width);
 }
 
 .site-header h1{ margin: 0 0 6px 0; font-weight: 800; }
@@ -118,12 +153,27 @@ header .lead{
   max-width: 950px;
   overflow: hidden;
 }
+.card-vis-inline{
+  /* Allow the visualization card to flex but keep a comfortable basis so side-by-side layouts align */
+  flex: 1 1 60%;
+  min-width: 0;
+  max-width: none; /* remove the hard cap so nested containers control sizing */
+  overflow: visible;
+}
 
 /* Description cards (right side) for: Employment, Tourism Expenditure, GDP/GVA */
 .card-desc-inline{
   flex: 0 0 350px;
   color: var(--muted);
   font-size: 0.95rem;
+}
+.card-desc-inline{
+  /* Keep description card a consistent width but allow shrinking on small screens */
+  flex: 0 0 320px;
+  max-width: 360px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  align-self: start; /* ensure descriptions align to the top of the visual */
 }
 
 .vis-container{
@@ -132,12 +182,27 @@ header .lead{
   /* allow embedded vega elements (legends, controls) to extend without being clipped */
   overflow: visible;
 }
+.vis-container{
+  width: 100%;
+  min-height: 320px;
+  /* allow embedded vega elements (legends, controls) to extend without being clipped */
+  overflow: visible;
+  display: block; /* make sizing predictable inside flex children */
+}
 
 /* Ensure inline visualizations fit their containers */
 .card-vis-inline .vis-container{
   max-height: 1000px;
 }
+.card-vis-inline .vis-container{
+  /* let individual vis containers size naturally; avoid an aggressive shared max-height */
+  max-height: none;
+}
 
+.card-vis-inline .vis-container,
+.card-vis .vis-container {
+  max-width: 100%;
+}
 /* Remove the white card 'container' for visualization and description sections so they don't block visuals */
 .card.card-vis-inline,
 .card.card-vis,
@@ -153,6 +218,12 @@ header .lead{
 }
 
 /* When the card wrapper is removed, keep headings spaced correctly */
+.card.card-vis-inline h2,
+.card.card-hero h2,
+.card.card-desc h3,
+.card.card-desc-inline h3{
+  margin: 8px 0 12px 0;
+}
 .card.card-vis-inline h2,
 .card.card-hero h2,
 .card.card-desc h3,
@@ -180,6 +251,53 @@ header .lead{
   margin: 0 !important;
   text-align: left !important;
   background: transparent !important; /* allow page background to show */
+}
+.vis-container .vega-embed{
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  text-align: left !important;
+  background: transparent !important; /* allow page background to show */
+}
+
+/* Specific alignment tweaks for the GDP / GVA card which had extra vertical offset */
+.card-gdp h2.vis-title{
+  margin-top: 6px; /* slightly smaller than default */
+}
+.card-gdp .vis-container{
+  margin-top: 0; /* ensure the chart sits flush under the title */
+}
+
+/* Quick fix: prevent the GDP visualization from collapsing when the page/container is narrow.
+   Give the GDP vis container and its embedded svg a sensible min-width and allow the inner
+   vega elements to expand to that width. This avoids the very thin vertical rendering seen.
+   If you prefer the chart to scale with the page, we can instead relax page max-width or
+   change the flex rules for side-by-side rows. */
+.card-gdp .vis-container{
+  min-width: 520px;
+}
+.card-gdp .vis-container .vega-embed,
+.card-gdp .vis-container .vega-embed > div,
+.card-gdp .vis-container svg{
+  width: 520px !important;
+  max-width: none !important;
+}
+
+/* Reduce the top margin of visualization titles when inside inline cards so
+   the visual and its description start at the same vertical position. */
+.card-vis-inline .vis-title{
+  margin: 8px 0 12px 0; /* smaller top margin for inline visuals */
+}
+
+/* Ensure description paragraphs don't add extra top margin that shifts alignment */
+.card-desc-inline p, .card-desc p{
+  margin-top: 0;
+  margin-bottom: 0.85rem;
+}
+
+/* Prevent visual containers from introducing unintended vertical spacing */
+.card-vis-inline .vis-container, .card-vis .vis-container{
+  margin-top: 0;
 }
 
 .vis-container .vega-embed > div,
