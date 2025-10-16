@@ -339,3 +339,34 @@ header .lead{
 /* Prevent horizontal scrolling */
 /* Prevent horizontal scrolling */
 html, body { overflow-x: hidden; }
+
+.card-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-start; /* keep top-aligned */
+}
+
+/* Left visual card: allow it to grow but give room to the right column */
+.card-vis-inline {
+    flex: 1 1 65%;
+    min-width: 420px;
+    box-sizing: border-box;
+}
+
+/* Right description column: make it wider and move it further right */
+.card-desc-inline {
+    flex: 0 0 360px;   /* increase width of description column */
+    max-width: 360px;
+    margin-left: 40px; /* push a bit more to the right */
+    align-self: flex-start;
+    box-sizing: border-box;
+}
+
+/* Ensure Vega embeds scale to their container and legends don't wrap badly */
+.card-vis-inline .vis-container,
+.card-vis .vis-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+}
