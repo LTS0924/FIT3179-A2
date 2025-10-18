@@ -45,18 +45,33 @@ body{
   color: #222;
 }
 
-.page{
+/* .page{
   max-width: var(--max-width);
   width: 100%;
-  margin: 0 auto; /* center the modest container */
+  margin: 0 auto;
   padding: var(--page-padding);
-}
+} */
+
 .page{
   /* Default visible content width: use --content-width to 'crop' empty space. */
-  max-width: var(--content-width);
+  /* max-width: var(--content-width); */ 
+  /* NOTE TO TS: yep, thats all, the max-width was preventing to to reach the borders*/
+
   width: 100%;
-  margin: 0 auto; /* center the modest container */
+  margin: 0 auto; 
   padding: var(--page-padding);
+}
+
+.main {
+  /* NOTE TO TS: below is just to make everything centerized */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Utility: if you want the full wide layout temporarily, add .page--wide to the page element
@@ -154,9 +169,11 @@ header .lead{
 .row .card-desc-stay {
   /* grid provides placement; ensure cards don't add extra offset */
   min-width: 360px; /* keep a comfortable minimum to avoid wrapping */
-  align-self: start;
+  align-self: center;
+  /* NOTE TO TS: align-self just change to center can d, from start */
   margin-left: 0; /* no extra manual offset — column-gap handles spacing */
-  padding-left: 0; /* content padding is handled per-card */
+  padding-left: 5; /* content padding is handled per-card */
+  /* NOTE TO TS: i added padding left cuz text so close to the line very uglpy, removed if u want */
 }
 
 /* Choropleth description is full-width and placed under the hero viz */
@@ -230,6 +247,7 @@ header .lead{
   /* make the left visual column wider so legends and controls fit comfortably */
   grid-template-columns: minmax(640px, 1fr) minmax(420px, 720px);
   column-gap: 200px; /* desired horizontal separation between visual and description */
+  /* NOTE TO TS: Reduced column gap */
   margin-bottom: 32px;
   align-items: start; /* top-align children so descriptions start at same height as visuals */
   width: 100%;
