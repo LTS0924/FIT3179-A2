@@ -2,8 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "background": "transparent",
   "description": "Dual-axis visualization showing GDP & GVA growth rates alongside International Arrivals",
-  "width": 640,
-  "height": 360,
+  "width": 900,
+  "height": 400,
   "autosize": { "type": "fit", "contains": "padding" },
   "padding": {"top": 20, "bottom": 50, "left": 20, "right": 80},
   "data": {
@@ -104,7 +104,7 @@
               "legend": {
                 "title": "Growth Indicators",
                 "orient": "right",
-                "offset": 80
+                "offset": 20
               }
             },
             "tooltip": [

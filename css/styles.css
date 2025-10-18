@@ -13,7 +13,7 @@
 /* Shared styles for the combined Tourism Dashboard */
 :root{
   /* Crop content to smaller monitor reference */
-  --content-width: 900px;
+  --content-width: 1000px;
   --max-width: 1920px;
   --page-padding: 12px;
   --card-bg: #ffffff;
@@ -62,7 +62,7 @@ body{
 /* Utility: if you want the full wide layout temporarily, add .page--wide to the page element
    or change --content-width at the :root level. The page will use --max-width as an upper bound. */
 .page.page--wide{
-  max-width: var(--max-width);
+  max-width: 1000px;
 }
 
 .site-header h1{ margin: 0 0 6px 0; font-weight: 800; }
@@ -132,13 +132,107 @@ header .lead{
   margin-bottom: 48px;
 }
 
+/* Per-idiom description classes so each description can be styled independently */
+.card-desc-choropleth,
+.card-desc-employment,
+.card-desc-expenditure,
+.card-desc-gdp,
+.card-desc-stay {
+  box-sizing: border-box;
+  color: var(--muted);
+  font-size: 0.95rem;
+  padding: 14px; /* default internal padding */
+  background: transparent;
+  margin-bottom: 24px;
+  width: 100%; /* fill the grid cell so inner width is predictable */
+}
+
+/* Desktop layout: for rows, place visual (left) and description (right) as two columns */
+.row .card-desc-employment,
+.row .card-desc-expenditure,
+.row .card-desc-gdp,
+.row .card-desc-stay {
+  /* grid provides placement; ensure cards don't add extra offset */
+  min-width: 360px; /* keep a comfortable minimum to avoid wrapping */
+  align-self: start;
+  margin-left: 0; /* no extra manual offset — column-gap handles spacing */
+  padding-left: 0; /* content padding is handled per-card */
+}
+
+/* Choropleth description is full-width and placed under the hero viz */
+.card-desc-choropleth { width: 90%; padding: 18px 20px; }
+
+/* Responsive fallback: stack descriptions below visuals on narrow screens */
+@media (max-width: 900px) {
+  .row .card-desc-employment,
+  .row .card-desc-expenditure,
+  .row .card-desc-gdp,
+  .row .card-desc-stay {
+    flex: 1 1 100%;
+    min-width: 100%;
+    padding-left: 0;
+  }
+}
+
+/* === Per-idiom visual tweaks === */
+/* Employment: cool blue accent, slight tint */
+.card-desc-employment {
+  background: rgba(0,114,178,0.04); /* faint blue */
+  border-left: 4px solid var(--accent);
+  padding-left: 14px; /* inner padding for content */
+  margin-top: 12px;   /* push down a bit */
+}
+
+/* Expenditure: warm accent */
+.card-desc-expenditure {
+  background: rgba(213,94,0,0.04); /* faint orange */
+  border-left: 4px solid #D55E00;
+  padding-left: 14px;
+}
+
+/* GDP/GVA: green accent for growth */
+.card-desc-gdp {
+  background: rgba(0,158,115,0.04); /* faint green */
+  border-left: 4px solid #009E73;
+  padding-left: 14px;
+}
+
+/* Average stay: purple accent for contrast */
+.card-desc-stay {
+  background: rgba(204,121,167,0.04); /* faint purple */
+  border-left: 4px solid #CC79A7;
+  padding-left: 14px;
+}
+
+/* Slightly stronger treatment for the choropleth description (hero) */
+.card-desc-choropleth {
+  border-top: 3px solid rgba(0,0,0,0.04);
+  background: rgba(0,0,0,0.01);
+  font-size: 1rem;
+}
+
+/* Small screens: remove heavy left accents to avoid visual clutter */
+@media (max-width: 640px) {
+  .card-desc-employment,
+  .card-desc-expenditure,
+  .card-desc-gdp,
+  .card-desc-stay {
+    border-left: none;
+    padding-left: 0.6rem;
+    background: transparent;
+  }
+}
+
 /* ===== SIDE-BY-SIDE VISUALIZATIONS (Employment, Tourism Expenditure, GDP/GVA) ===== */
 .row{
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+  /* Use CSS Grid for predictable two-column layout: visual (left) + description (right) */
+  display: grid;
+  /* make the left visual column wider so legends and controls fit comfortably */
+  grid-template-columns: minmax(640px, 1fr) minmax(420px, 720px);
+  column-gap: 200px; /* desired horizontal separation between visual and description */
   margin-bottom: 32px;
-  align-items: flex-start; /* top-align children so descriptions start at same height as visuals */
+  align-items: start; /* top-align children so descriptions start at same height as visuals */
+  width: 100%;
 }
 
 /* Visualization cards for: Employment, Tourism Expenditure, GDP/GVA */
@@ -146,25 +240,16 @@ header .lead{
   /* Left visual column: flexible but with a sensible minimum so charts/legends fit */
   flex: 1 1 62%;
   min-width: 480px;
-  overflow: visible;
-}
-
-/* Description cards (right side) for: Employment, Tourism Expenditure, GDP/GVA */
-.card-desc-inline{
-  /* Right description column: slightly wider and nudged right */
-  flex: 0 0 360px;
-  max-width: 360px;
-  margin-left: 56px; /* increased nudge */
-  color: var(--muted);
-  font-size: 0.95rem;
-  align-self: start;
+  /* Prevent visual content (legends, controls) from overflowing into the right column */
+  overflow: hidden;
+  position: relative;
 }
 
 .vis-container{
   width: 100%;
   min-height: 320px;
   /* allow embedded vega elements (legends, controls) to extend without being clipped */
-  overflow: visible;
+  overflow: hidden; /* clip any parts that would spill into adjacent grid cell */
 }
 .vis-container{
   width: 100%;
@@ -179,6 +264,12 @@ header .lead{
   /* let individual vis containers size naturally; avoid an aggressive shared max-height */
   max-height: none;
   min-width: 480px;
+}
+
+/* Center visual titles within the visual column so they line up with the chart */
+.card-vis-inline h2.vis-title,
+.card-hero h2.vis-title {
+  text-align: center;
 }
 
 .card-vis-inline .vis-container,
@@ -253,12 +344,6 @@ header .lead{
   margin: 8px 0 12px 0; /* smaller top margin for inline visuals */
 }
 
-/* Ensure description paragraphs don't add extra top margin that shifts alignment */
-.card-desc-inline p, .card-desc p{
-  margin-top: 0;
-  margin-bottom: 0.85rem;
-}
-
 /* Prevent visual containers from introducing unintended vertical spacing */
 .card-vis-inline .vis-container, .card-vis .vis-container{
   margin-top: 0;
@@ -301,7 +386,6 @@ header .lead{
 }
 
 /* Prevent horizontal scrolling */
-/* Prevent horizontal scrolling */
 html, body { overflow-x: hidden; }
 
 .card-row {
@@ -313,18 +397,10 @@ html, body { overflow-x: hidden; }
 
 /* Left visual card: allow it to grow but give room to the right column */
 .card-vis-inline {
-    flex: 1 1 65%;
-    min-width: 420px;
-    box-sizing: border-box;
-}
-
-/* Right description column: make it wider and move it further right */
-.card-desc-inline {
-    flex: 0 0 360px;   /* increase width of description column */
-    max-width: 360px;
-    margin-left: 40px; /* push a bit more to the right */
-    align-self: flex-start;
-    box-sizing: border-box;
+  flex: 1 1 65%;
+  min-width: 760px; /* match grid left column minimum so visuals/legends don't shrink */
+  box-sizing: border-box;
+  overflow: visible; /* ensure legends/controls are shown */
 }
 
 /* Ensure Vega embeds scale to their container and legends don't wrap badly */

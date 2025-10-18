@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "background": "transparent",
-  "width": 600,
+  "width": 800,
   "height": 360,
   "autosize": { "type": "fit", "contains": "padding" },
   "data": {
@@ -82,7 +82,7 @@
         "orient": "right",
         "titleLimit": 200,
         "labelLimit": 250,
-        "offset": 80
+        "offset": 20
       }
     },
     "tooltip": [
