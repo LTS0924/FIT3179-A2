@@ -13,7 +13,7 @@
 /* Shared styles for the combined Tourism Dashboard */
 :root{
   /* Crop content to smaller monitor reference */
-  --content-width: 1000px;
+  --content-width: 1500px;
   --max-width: 1920px;
   --page-padding: 12px;
   --card-bg: #ffffff;
@@ -52,14 +52,20 @@ body{
   padding: var(--page-padding);
 } */
 
+body {
+  background-color: gray;
+}
+
 .page{
   /* Default visible content width: use --content-width to 'crop' empty space. */
-  /* max-width: var(--content-width); */ 
+  max-width: var(--content-width); 
   /* NOTE TO TS: yep, thats all, the max-width was preventing to to reach the borders*/
 
   width: 100%;
-  margin: 0 auto; 
+  margin: 10px auto; 
   padding: var(--page-padding);
+  background-color: white;
+  border-radius: 15px;
 }
 
 .main {
@@ -132,7 +138,8 @@ header .lead{
 .card-hero{
   width: 100%;
   margin-bottom: 16px;
-  margin-left: 150px;
+  /* margin-left: 150px; */
+  /* NOTE TO TS: whats this doin here */
 }
 
 .vis-hero{
@@ -246,8 +253,9 @@ header .lead{
   /* Use CSS Grid for predictable two-column layout: visual (left) + description (right) */
   display: grid;
   /* make the left visual column wider so legends and controls fit comfortably */
-  grid-template-columns: minmax(800px, 1fr) minmax(420px, 720px);
-  column-gap: 200px; /* desired horizontal separation between visual and description */
+  /* grid-template-columns: minmax(800px, 1fr) minmax(420px, 720px); */
+  grid-template-columns: 3fr 1fr;
+  column-gap: 50px; /* desired horizontal separation between visual and description */
   /* NOTE TO TS: Reduced column gap */
   margin-bottom: 32px;
   align-items: start; /* top-align children so descriptions start at same height as visuals */

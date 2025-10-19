@@ -9,7 +9,7 @@
     "scale": 2500,
     "translate": [440, 225]
   },
-  "padding": { "top": 6, "bottom": 6, "left": 6, "right": 120 },
+  "padding": { "top": 6, "bottom": 6, "left": 6, "right": 6 },
   "params": [
     {
       "name": "year_selection",
@@ -157,7 +157,7 @@
         "color": {
           "field": "range",
           "type": "nominal",
-          "scale": { "domain": ["16-100"], "range": ["#ffffff"] },
+          "scale": { "domain": [], "range": ["#ffffff"] },
           "legend": { "title": "16-100 (unused)", "orient": "right" }
         }
       }

@@ -91,6 +91,26 @@
           {"field": "Stay_2017", "type": "quantitative", "title": "Average Stay (nights)", "format": ".1f"}
         ]
       }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dx": 0,
+        "dy": -25,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#0072B2"
+      },
+      "transform": [
+        { "filter": "datum.Year == 'Others ASEAN'" }
+      ],
+      "encoding": {
+        "x": { "field": "Stay_2017", "type": "quantitative" },
+        "y": { "field": "Year", "type": "nominal" },
+        "text": { "value": "No specific data available for Malaysia — values are included under 'Other ASEAN'." }
+      }
     }
   ]
 ,

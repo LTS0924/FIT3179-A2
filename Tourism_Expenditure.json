@@ -8,6 +8,7 @@
   },
   "width": "container",
   "height": "container",
+  "autosize": { "type": "fit", "contains": "padding" },
   "transform": [
     { "fold": ["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024"], "as": ["year","expenditure"] },
     { "calculate": "toNumber(datum.expenditure)", "as": "exp_num" },
