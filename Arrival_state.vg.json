@@ -103,6 +103,10 @@
           "as": "PercentageNum"
         },
         {
+          "calculate": "datum.PercentageNum <= 4 ? '0–4%' : datum.PercentageNum <= 8 ? '4–8%' : datum.PercentageNum <= 12 ? '8–12%' : datum.PercentageNum <= 16 ? '12–16%' : 'Unused'",
+          "as": "PercentageBin"
+        },
+        {
           "lookup": "State",
           "from": {
             "data": {
@@ -118,14 +122,17 @@
       "encoding": {
         "shape": { "field": "geo", "type": "geojson" },
         "color": {
-          "condition": {
-            "test": "datum.PercentageNum == null || isNaN(datum.PercentageNum)",
-            "value": "#efefef"
+          "field": "PercentageBin",
+          "type": "nominal",
+          "scale": {
+            "domain": ["0–4%", "4–8%", "8–12%", "12–16%", " 17-100% Unused"],
+            "range": ["#deebf7", "#9ecae1", "#3182bd", "#08519c", "#ffffff"]
           },
-          "field": "PercentageNum",
-          "type": "quantitative",
-          "scale": { "domain": [0, 16], "scheme": "blues" },
-          "legend": { "title": "Percentage of Total Arrivals (%)", "orient": "right", "offset": 8 }
+          "legend": {
+            "title": "Percentage of Total Arrivals (%)",
+            "orient": "right",
+            "offset": 8
+          }
         },
         "opacity": { "value": 1 },
         "tooltip": [
@@ -147,18 +154,6 @@
             "value": 3
           },
           "value": 1
-        }
-      }
-    },
-  {
-      "data": { "values": [{ "range": "31-100" }] },
-      "mark": { "type": "point", "opacity": 0 },
-      "encoding": {
-        "color": {
-          "field": "range",
-          "type": "nominal",
-          "scale": { "domain": [], "range": ["#ffffff"] },
-          "legend": { "title": "16-100 (unused)", "orient": "right" }
         }
       }
     }

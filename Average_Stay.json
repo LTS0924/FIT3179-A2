@@ -76,7 +76,7 @@
         "y": { "field": "Year", "type": "nominal", "sort": {"field": "Stay_2017", "order": "descending"}, "title": null },
         "x": { "field": "Stay_2017", "type": "quantitative", "scale": {"domain": [0, 12]}, "title": "Average Length of Stay (nights)" },
         "x2": { "value": 0 },
-  "color": { "field": "Country_Type", "type": "nominal", "legend": null, "scale": {"domain": ["Others ASEAN", "Other"], "range": ["#0072B2", "#999999"]} }
+  "color": { "field": "Country_Type", "type": "nominal", "legend": null, "scale": {"domain": ["Others ASEAN", "Other"], "range": ["#800000", "#999999"]} }
       }
     },
     {
@@ -101,7 +101,7 @@
         "dy": -25,
         "fontSize": 12,
         "fontWeight": "bold",
-        "color": "#0072B2"
+  "color": "#800000"
       },
       "transform": [
         { "filter": "datum.Year == 'Others ASEAN'" }

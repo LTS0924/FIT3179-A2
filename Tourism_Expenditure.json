@@ -41,7 +41,33 @@
       "encoding": {
         "x": { "field": "year", "type": "ordinal", "title": "Year", "sort": ["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024"] },
         "y": { "field": "exp_num", "type": "quantitative", "title": "Expenditure (RM Million)" },
-        "color": { "field": "Industry", "type": "nominal", "title": "Industry", "scale": { "scheme": "category10" } }
+        "color": {
+          "field": "Industry",
+          "type": "nominal",
+          "title": "Industry",
+          "scale": {
+            "domain": [
+              "Accommodation services",
+              "Country-specific tourism characteristic services",
+              "Cultural, sports and recreational services",
+              "Food and beverage serving services",
+              "Passenger transport services",
+              "Retail sale of automotive fuel",
+              "Retail trade",
+              "Travel agencies and other reservation services"
+            ],
+            "range": [
+              "#1f77b4",
+              "#9467bd",
+              "#ff7f0e",
+              "#d62728",
+              "#8c564b",
+              "#e377c2",
+              "#7f7f7f",
+              "#bcbd22"
+            ]
+          }
+        }
       }
     },
 
@@ -50,7 +76,32 @@
       "encoding": {
         "x": { "field": "year", "type": "ordinal", "sort": ["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024"] },
         "y": { "field": "exp_num", "type": "quantitative" },
-        "color": { "field": "Industry", "type": "nominal", "scale": { "scheme": "category10" } },
+        "color": {
+          "field": "Industry",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Accommodation services",
+              "Country-specific tourism characteristic services",
+              "Cultural, sports and recreational services",
+              "Food and beverage serving services",
+              "Passenger transport services",
+              "Retail sale of automotive fuel",
+              "Retail trade",
+              "Travel agencies and other reservation services"
+            ],
+            "range": [
+              "#1f77b4",
+              "#9467bd",
+              "#ff7f0e",
+              "#d62728",
+              "#8c564b",
+              "#e377c2",
+              "#7f7f7f",
+              "#bcbd22"
+            ]
+          }
+        },
         "tooltip": [
           {"field": "Industry", "type": "nominal", "title": "Industry"},
           {"field": "year", "type": "ordinal", "title": "Year"},
@@ -65,7 +116,32 @@
       "encoding": {
         "x": { "field": "year", "type": "ordinal", "sort": ["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024"] },
         "y": { "field": "exp_num", "type": "quantitative" },
-        "color": { "field": "Industry", "type": "nominal", "scale": { "scheme": "category10" } },
+        "color": {
+          "field": "Industry",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Accommodation services",
+              "Country-specific tourism characteristic services",
+              "Cultural, sports and recreational services",
+              "Food and beverage serving services",
+              "Passenger transport services",
+              "Retail sale of automotive fuel",
+              "Retail trade",
+              "Travel agencies and other reservation services"
+            ],
+            "range": [
+              "#1f77b4",
+              "#9467bd",
+              "#ff7f0e",
+              "#d62728",
+              "#8c564b",
+              "#e377c2",
+              "#7f7f7f",
+              "#bcbd22"
+            ]
+          }
+        },
         "tooltip": [
           {"field": "Industry", "type": "nominal", "title": "Industry"},
           {"field": "year", "type": "ordinal", "title": "Peak year"},
