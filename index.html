@@ -29,13 +29,11 @@
 	<div class="page">
 
 		<header class="header">
-      <h1 style="margin-bottom: 24px; font-size: 2.8em; text-align: center; margin-left: 50px; margin-right: 50px;">How Tourism Drives Economic Growth and Recovery in Malaysia</h1>
+      <h1 style="margin-bottom: 24px; font-size: 3.0em; text-align: center; margin-left: 50px; margin-right: 50px;">How Tourism Drives Economic Growth and Recovery in Malaysia</h1>
       <p class="lead" style="margin-bottom: 40px; font-size: 1.15em; max-width: 900px; margin-left: 50px; margin-right: 50px; text-align: center;">Tourism is a key engine for Malaysia’s economy, shaping employment, spending, and growth across regions and sectors. From 2015 to 2024, the data reveals how tourist arrivals, industry jobs, and expenditure patterns have responded to global challenges and local strengths. Despite setbacks during the pandemic, Malaysia’s tourism sector has shown resilience, with strong rebounds in arrivals, employment, and spending. These visualisations highlight the dynamic links between tourism and economic development, offering insights into recovery and future opportunities.</p>
 		</header>
 
-    <main style="margin-top: 32px;">
-
-    <main class="main">
+	<main class="main" style="margin-top: 32px;">
       <!-- FIRST: Choropleth Map (vis3) - Full width, vertical stack -->
 			<section class="card card-vis card-hero">
 				<h2 class="vis-title">Arrivals by State (selectable year)</h2>
@@ -43,7 +41,12 @@
 			</section>
 			<section class="card card-desc-choropleth">
 				<h3>Description</h3>
-				<p>Tourist arrivals in Malaysia show clear regional leaders, with Selangor, Kuala Lumpur, and Johor consistently attracting the most visitors. The interactive map highlights these trends and shows strong recovery in 2024, reflecting Malaysia's enduring appeal across its states.</p>
+				<p>The choropleth map highlights how international arrivals in Malaysia are concentrated in a few key states.
+					Selangor and Kuala Lumpur consistently lead, reflecting their roles as major entry points.
+					Border and tourism states like Johor, Sabah, and Sarawak form the next tier, while smaller states maintain steady but lower volumes.
+					A sharp dip in 2020–2021 reflects the pandemic’s impact, followed by a strong rebound from 2022 onward. 
+					By 2024, arrivals in major states surpassed pre-pandemic levels, with growth also spreading to states like Melaka, Pulau Pinang, and Perak.
+					This pattern shows tourism is centered around key hubs but is gradually expanding nationwide as recovery strengthens.</p>
 			</section>
 
       <!-- Employment (vis1) - Side by side -->
@@ -54,37 +57,53 @@
 				</section>
 				<section class="card card-desc-employment">
 					<h3>Description</h3>
-					<p>Tourism employment in Malaysia is driven by food, retail, and accommodation sectors. Despite a dip in 2020-2021, jobs rebounded, reaching new highs in 2024.</p>
+					<p>The stacked bar chart shows how tourism employment in Malaysia is heavily driven by the food, retail, and accommodation sectors.
+						From 2015 to 2019, these three industries consistently made up the largest share of tourism jobs.
+						A sharp dip in 2020–2021 reflects the pandemic’s impact, especially on travel agencies and recreation services, 
+						which saw the steepest declines. In contrast, core sectors like food and retail remained more resilient.
+						From 2022 onward, employment rebounded strongly across all industries, with 2024 reaching new highs, 
+						especially in retail and food services. This highlights how Malaysia’s tourism recovery is led by its service-driven sectors, 
+						supported by growing international arrivals.</p>
 				</section>
 			</div>
 
       <!-- Tourism Expenditure (vis4) - Side by side -->
 			<div class="row">
-				<section class="card card-vis-inline" style="width:100%;">
+				<section class="card card-vis-inline" style="width:110%;">
 					<h2 class="vis-title">Inbound Tourism Expenditure of Excursionist by Products</h2>
 					<div id="vis4" class="vis-container"></div>
 				</section>
 				<section class="card card-desc-expenditure">
 					<h3>Description</h3>
-					<p>Inbound tourism spending in Malaysia dropped sharply in 2020-2021, but has since recovered across all product categories, with accommodation and transport leading the rebound.</p>
+					<p>The line chart tracks how inbound tourism spending by excursionists in Malaysia evolved across product categories from 2015 to 2024.
+						Before 2020, country-specific goods, transport, and accommodation consistently dominated spending. 
+						However, a sharp collapse in 2020–2021 is visible across all categories, with some nearly dropping to zero during border closures.
+						From 2022 onward, spending rebounded strongly, led by accommodation, transport, and tourism goods, 
+						which climbed back to — and in some cases surpassed — pre-pandemic levels by 2024.
+						This trend reflects how core travel essentials drive inbound tourism expenditure, 
+						with recovery closely tied to the return of international mobility.</p>
 				</section>
 			</div>
 
       <!-- GDP & Arrivals (vis2) - Side by side -->
 			<div class="row">
-				<section class="card card-vis-inline" style="width:100%;">
+				<section class="card card-vis-inline" style="width:110%;">
 					<h2 class="vis-title">GDP / GVA Growth & International Arrivals</h2>
 					<div id="vis2" class="vis-container"></div>
 				</section>
 				<section class="card card-desc-gdp">
 					<h3>Description</h3>
-					<p>GDP and GVA growth rates peaked in 2017, alongside the highest international arrivals. The chart shows how tourism growth and visitor numbers move together over time.</p>
+					<p>The dual axis chart shows how Malaysia’s economic growth in tourism and international arrivals move in tandem over time.
+						In 2017, both GDP and GVA growth rates peaked, coinciding with the highest number of international arrivals. 
+						This alignment reflects how visitor inflows directly support economic expansion in the tourism sector.
+						Although both indicators declined slightly after 2017, the parallel trend lines highlight a strong correlation between 
+						economic performance and tourism activity, emphasizing the sector’s role as a key economic driver.</p>
 				</section>
 			</div>
 
       <!-- Average Stay (vis5) - Side by side -->
 			<div class="row">
-				<section class="card card-vis-inline" style="width:100%;">
+				<section class="card card-vis-inline" style="width:110%;">
 					<h2 class="vis-title">Average Length of Stay by Country (2015-2017)</h2>
 					<div id="vis5" class="vis-container"></div>
 				</section>
@@ -94,8 +113,20 @@
 				</section>
 			</div>
 
-    </main>		<footer class="credits">
-			<p>Data files are loaded from the local repository files (CSV/JSON). To avoid cross-origin issues, serve this folder with a local HTTP server when testing (for example: <code>python3 -m http.server</code>).</p>
+		</main>
+		<footer class="credits meta-footer" aria-label="page metadata">
+			<div class="meta-inner">
+				<p><strong>Designed by:</strong> Lee Ting Sen</p>
+				<p><strong>Published Date:</strong> 19/10/2025</p>
+				<p><strong>Data credits to:</strong></p>
+				<ul>
+					<li>Migration rates by state by DATA@DOSM(<a href="https://archive.data.gov.my/data/en_US/dataset/migration-rates-by-state-of-destination-and-migration-status" target="_blank" rel="noopener">Source #1</a>)</li>
+					<li>World Bank arrivals (ST.INT.ARVL) by World Bank Group (<a href="https://data.worldbank.org/indicator/ST.INT.ARVL?locations=MY" target="_blank" rel="noopener">Source #2</a>)</li>
+					<li>Average stay & expenditure by DATA@DOSM(<a href="https://archive.data.gov.my/data/dataset/total-average-stay-expenditure-by-country-of-nationality/resource/77174e13-6d8b-4c3c-813f-af0aa32366bb?view_id=9075e786-c145-4b45-a1d2-dd760234c60e" target="_blank" rel="noopener">Source #3</a>)</li>
+					<li>Malaysia Map by simplemaps (<a href="https://simplemaps.com/gis/country/my#admin1" target="_blank" rel="noopener">Source #4</a>)</li>
+				</ul>
+				<p><strong>Acknowledgements to:</strong> DATA@DOSM, simplemaps and World Bank Group</p>
+			</div>
 		</footer>
 
 	</div>

@@ -77,7 +77,7 @@ body{
 /* Utility: if you want the full wide layout temporarily, add .page--wide to the page element
    or change --content-width at the :root level. The page will use --max-width as an upper bound. */
 .page.page--wide{
-  max-width: 1000px;
+  max-width: 900px;
 }
 
 .site-header h1{ margin: 0 0 6px 0; font-weight: 800; }
@@ -130,8 +130,9 @@ header .lead{
 
 /* ===== CHOROPLETH MAP (Arrivals by State) - Hero visualization at top ===== */
 .card-hero{
-  width: 95%;
+  width: 100%;
   margin-bottom: 16px;
+  margin-left: 150px;
 }
 
 .vis-hero{
@@ -144,7 +145,7 @@ header .lead{
   width: 90%;
   color: var(--muted);
   font-size: 0.95rem;
-  margin-bottom: 48px;
+  margin-top: 100px;
 }
 
 /* Per-idiom description classes so each description can be styled independently */
@@ -159,7 +160,7 @@ header .lead{
   padding: 14px; /* default internal padding */
   background: transparent;
   margin-bottom: 24px;
-  width: 100%; /* fill the grid cell so inner width is predictable */
+  width: 40%; /* fill the grid cell so inner width is predictable */
 }
 
 /* Desktop layout: for rows, place visual (left) and description (right) as two columns */
@@ -187,7 +188,7 @@ header .lead{
   .row .card-desc-stay {
     flex: 1 1 100%;
     min-width: 100%;
-    padding-left: 0;
+    padding-left: 14px;
   }
 }
 
@@ -245,7 +246,7 @@ header .lead{
   /* Use CSS Grid for predictable two-column layout: visual (left) + description (right) */
   display: grid;
   /* make the left visual column wider so legends and controls fit comfortably */
-  grid-template-columns: minmax(640px, 1fr) minmax(420px, 720px);
+  grid-template-columns: minmax(800px, 1fr) minmax(420px, 720px);
   column-gap: 200px; /* desired horizontal separation between visual and description */
   /* NOTE TO TS: Reduced column gap */
   margin-bottom: 32px;
@@ -257,7 +258,7 @@ header .lead{
 .card-vis-inline{
   /* Left visual column: flexible but with a sensible minimum so charts/legends fit */
   flex: 1 1 62%;
-  min-width: 480px;
+  min-width: 600px;
   /* Prevent visual content (legends, controls) from overflowing into the right column */
   overflow: hidden;
   position: relative;
@@ -383,6 +384,26 @@ header .lead{
 
 .credits{ margin-top: 18px; color: var(--muted); font-size: 0.92rem; }
 .error{ color: crimson; white-space: pre-wrap; }
+
+/* Metadata footer pinned to bottom-left of the viewport */
+.credits-fixed{
+  position: fixed !important;
+  left: 12px !important;
+  bottom: 12px !important;
+  background: rgba(255,255,255,0.96);
+  color: var(--muted);
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(10,10,20,0.08);
+  max-width: 640px;
+  z-index: 9999 !important;
+  font-size: 0.9rem;
+}
+
+/* Smaller footprint on mobile: inline under content */
+@media (max-width: 640px){
+  .credits-fixed{ position: static !important; display: block; width: auto; max-width: none; margin-top: 16px; box-shadow: none; background: transparent; padding: 0; }
+}
 
 /* Make the layout single column on small screens */
 /* Already single-column by default; keep responsive sizing */

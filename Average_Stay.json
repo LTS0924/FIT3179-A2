@@ -1,90 +1,91 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "background": "transparent",
-  "description": "Lollipop chart showing average length of stay by country in 2017",
+  "description": "Vertical lollipop comparing Others ASEAN with a selected country (Average length of stay, 2017). Use the dropdown to select a country.",
   "width": "container",
-  "height": 800,
+  "height": 480,
   "autosize": { "type": "fit", "contains": "padding" },
   "data": {
     "url": "https://raw.githubusercontent.com/LTS0924/FIT3179-A2/refs/heads/main/Average_Stay.csv"
   },
-  "transform": [
+  
+  "params": [
     {
-      "calculate": "toNumber(datum['2017'])",
-      "as": "Stay_2017"
-    },
-    {
-      "calculate": "datum.Year == 'Others ASEAN' ? 'Others ASEAN' : 'Other'",
-      "as": "Country_Type"
+      "name": "selectedCountry",
+      "value": "Australia",
+      "bind": {
+        "input": "select",
+        "name": "Compare Others ASEAN with: ",
+        "options": [
+          "Singapore",
+          "Thailand",
+          "Indonesia",
+          "Brunei",
+          "Philippines",
+          "Vietnam",
+          "China",
+          "Japan",
+          "South Korea",
+          "Taiwan",
+          "Others East Asia",
+          "India",
+          "Pakistan",
+          "Others South Asia",
+          "Saudi Arabia",
+          "United Arab Emirates",
+          "Oman",
+          "Kuwait",
+          "Iran",
+          "Others West Asia",
+          "Canada",
+          "U.S.A",
+          "Others Americas",
+          "United Kingdom",
+          "Ireland",
+          "Sweden",
+          "Denmark",
+          "Finland",
+          "Norway",
+          "Italy",
+          "Spain",
+          "France",
+          "Belgium",
+          "Netherlands",
+          "Germany",
+          "Switzerland",
+          "Russia",
+          "Others Europe",
+          "Australia",
+          "New Zealand",
+          "South Africa",
+          "Central Asia",
+          "Others"
+        ]
+      }
     }
+  ],
+  "transform": [
+    { "calculate": "toNumber(datum['2017'])", "as": "Stay_2017" },
+    { "calculate": "datum.Year == 'Others ASEAN' ? 'Others ASEAN' : 'Other'", "as": "Country_Type" },
+    { "filter": "datum.Year == 'Others ASEAN' || datum.Year == selectedCountry" }
   ],
   "layer": [
     {
-      "mark": {
-        "type": "rule",
-        "strokeWidth": 2,
-        "opacity": 0.7
-      },
+      "mark": {"type": "rule", "opacity": 0.9, "strokeWidth": 2},
       "encoding": {
-        "x": {
-          "field": "Stay_2017",
-          "type": "quantitative",
-          "scale": {"domain": [0, 12]},
-          "title": "Average Length of Stay (nights)"
-        },
-        "y": {
-          "field": "Year",
-          "type": "nominal",
-          "sort": {
-            "field": "Stay_2017",
-            "order": "descending"
-          },
-          "title": "Country of Nationality"
-        },
-        "x2": {"value": 0},
-        "color": {
-          "field": "Country_Type",
-          "type": "nominal",
-          "scale": {
-            "domain": ["Others ASEAN", "Other"],
-            "range": ["#0072B2", "#999999"]
-          },
-          "legend": null
-        }
+        "y": { "field": "Year", "type": "nominal", "sort": {"field": "Stay_2017", "order": "descending"}, "title": null },
+        "x": { "field": "Stay_2017", "type": "quantitative", "scale": {"domain": [0, 12]}, "title": "Average Length of Stay (nights)" },
+        "x2": { "value": 0 },
+  "color": { "field": "Country_Type", "type": "nominal", "legend": null, "scale": {"domain": ["Others ASEAN", "Other"], "range": ["#0072B2", "#999999"]} }
       }
     },
     {
-      "mark": {
-        "type": "circle",
-        "size": 100,
-        "opacity": 0.9
-      },
+      "mark": {"type": "circle", "size": 200},
       "encoding": {
-        "x": {
-          "field": "Stay_2017",
-          "type": "quantitative"
-        },
-        "y": {
-          "field": "Year",
-          "type": "nominal",
-          "sort": {
-            "field": "Stay_2017",
-            "order": "descending"
-          }
-        },
-        "color": {
-          "field": "Country_Type",
-          "type": "nominal",
-          "scale": {
-            "domain": ["Others ASEAN", "Other"],
-            "range": ["#0072B2", "#999999"]
-          },
-          "legend": {
-            "title": "Country Type",
-            "orient": "right",
-            "offset": 120
-          }
-        },
+        "y": { "field": "Year", "type": "nominal", "sort": {"field": "Stay_2017", "order": "descending"} },
+        "x": { "field": "Stay_2017", "type": "quantitative" },
+  "color": { "field": "Country_Type", "type": "nominal", "legend": null, "scale": {"domain": ["Others ASEAN", "Other"], "range": ["#0072B2", "#999999"]} },
+  "size": { "condition": { "test": "datum.Country_Type === 'Others ASEAN'", "value": 300 }, "value": 200 },
         "tooltip": [
           {"field": "Year", "type": "nominal", "title": "Country"},
           {"field": "Stay_2017", "type": "quantitative", "title": "Average Stay (nights)", "format": ".1f"}
