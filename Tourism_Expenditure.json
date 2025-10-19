@@ -48,6 +48,7 @@
           "scale": {
             "domain": [
               "Accommodation services",
+              "Country-specific tourism characteristic goods",
               "Country-specific tourism characteristic services",
               "Cultural, sports and recreational services",
               "Food and beverage serving services",
@@ -58,6 +59,7 @@
             ],
             "range": [
               "#1f77b4",
+              "#2ca02c",
               "#9467bd",
               "#ff7f0e",
               "#d62728",
